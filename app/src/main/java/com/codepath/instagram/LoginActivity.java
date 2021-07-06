@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void done(ParseUser user, ParseException e) {
                 if (e != null) {
-                    Log.e(TAG, "Error Logging in", e);
+                    Log.i(TAG, "Error Logging in", e);
                     Toast.makeText(LoginActivity.this, "Invalid username/password", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (e == null) {
                     goMainActivity();
                 } else {
-                    Log.e(TAG, "Error Signing Up", e);
+                    Log.i(TAG, "Error Signing Up", e);
                     Toast.makeText(LoginActivity.this, "Error Signing Up", Toast.LENGTH_SHORT).show();
                 }
             }

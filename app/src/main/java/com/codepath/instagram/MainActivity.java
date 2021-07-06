@@ -4,10 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.parse.LogOutCallback;
 import com.parse.ParseUser;
@@ -34,7 +36,20 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.log_out) {
+            ParseUser.logOut();
+            if(ParseUser.getCurrentUser() == null){
+                Toast.makeText(MainActivity.this, "Logged Out", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
 
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 
 }
