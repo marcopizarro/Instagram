@@ -4,15 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".MainActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/main_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="4dp"
         android:background="@color/white"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        />
+        android:elevation="10dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/menu_bottom_navigation"
+        app:itemIconTint="@color/white"/>
+
+    <EditText
+        android:id="@+id/etDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/main_toolbar"
+        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/tb_background"
+        android:ems="10"
+        android:hint="Description"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/btnTakePhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etDesc"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Take Photo" />
+
+    <ImageView
+        android:id="@+id/ivImagePreview"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_below="@+id/btnTakePhoto"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="31dp"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <Button
+        android:id="@+id/btnSubmitPost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivImagePreview"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp"
+        android:text="Post" />
+
 
 </RelativeLayout>

@@ -1,12 +1,12 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
 
 
     <!-- Settings, should always be in the overflow -->
     <item
         android:id="@+id/log_out"
-        android:icon="@drawable/ufi_more"
+        android:icon="@drawable/media_option_button"
         android:title="Log Out"
         app:showAsAction="never" />
 
