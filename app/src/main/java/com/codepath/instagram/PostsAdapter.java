@@ -67,12 +67,15 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         private TextView tvPostUsername;
         private TextView tvPostDesc;
         private ImageView ivPostImage;
+        private ImageView ivPostUserPhoto;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvPostDesc = itemView.findViewById(R.id.tvPostDesc);
             tvPostUsername = itemView.findViewById(R.id.tvPostUsername);
             ivPostImage = itemView.findViewById(R.id.ivPostImage);
+            ivPostUserPhoto = itemView.findViewById(R.id.ivPostUserPhoto);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -91,12 +94,30 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         public void bind(Post post) {
             tvPostDesc.setText(post.getDescription());
             tvPostUsername.setText(post.getUser().getUsername());
+
             ParseFile image = post.getImage();
             if (image != null) {
                 Glide.with(context)
                         .load(post.getImage().getUrl())
                         .into(ivPostImage);
             }
+            ParseUser user = post.getUser();
+            if  (user != null) {
+                ParseFile image1 = user.getParseFile("image");
+                if (image1 != null) {
+                    Glide.with(context)
+                            .load(image1.getUrl())
+                            .circleCrop()
+                            .into(ivPostUserPhoto);
+                } else {
+                    Glide.with(context)
+                            .load(R.drawable.anon)
+                            .circleCrop()
+                            .into(ivPostUserPhoto);
+                }
+            }
+
+
         }
     }
 }

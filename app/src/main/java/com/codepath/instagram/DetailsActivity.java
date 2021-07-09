@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.parse.ParseFile;
+import com.parse.ParseUser;
 
 import org.parceler.Parcels;
 
@@ -20,6 +21,7 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView tvPostDesc;
     private ImageView ivPostImage;
     private TextView tvPostTime;
+    private ImageView ivPostUserPhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class DetailsActivity extends AppCompatActivity {
         tvPostUsername = findViewById(R.id.tvPostUsername);
         ivPostImage = findViewById(R.id.ivPostImage);
         tvPostTime = findViewById(R.id.tvPostTime);
+        ivPostUserPhoto = findViewById(R.id.ivPostUserPhoto);
 
         tvPostDesc.setText(post.getDescription());
         tvPostTime.setText(Post.calculateTimeAgo(post.getCreatedAt()));
@@ -41,6 +44,16 @@ public class DetailsActivity extends AppCompatActivity {
             Glide.with(this)
                     .load(post.getImage().getUrl())
                     .into(ivPostImage);
+        }
+        ParseUser user = post.getUser();
+        if  (user != null) {
+            ParseFile image1 = user.getParseFile("image");
+            if (image1 != null) {
+                Glide.with(this)
+                        .load(image1.getUrl())
+                        .circleCrop()
+                        .into(ivPostUserPhoto);
+            }
         }
     }
 }
