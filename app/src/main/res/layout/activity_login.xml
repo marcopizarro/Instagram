@@ -51,10 +51,12 @@
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="141dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/etPassword"
         android:layout_centerHorizontal="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="20dp"
         android:text="Login" />
 
@@ -65,5 +67,8 @@
         android:layout_below="@+id/btnLogin"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:text="Sign Up" />
+        android:background="#00FFFFFF"
+        android:backgroundTintMode="multiply"
+        android:text="Sign Up"
+        android:textColor="@color/design_default_color_surface" />
 </RelativeLayout>

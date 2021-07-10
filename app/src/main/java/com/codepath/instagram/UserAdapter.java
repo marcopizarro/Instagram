@@ -19,12 +19,12 @@ import org.parceler.Parcels;
 
 import java.util.List;
 
-public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
+public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     private Context context;
     private List<Post> posts;
 
-    public PostsAdapter(Context context, List<Post> posts) {
+    public UserAdapter(Context context, List<Post> posts) {
         this.context = context;
         this.posts = posts;
     }
@@ -44,7 +44,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_post, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_post_grid, parent, false);
         return new ViewHolder(view);
     }
 
@@ -61,20 +61,14 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView tvPostUsername;
-        private TextView tvPostDesc;
+
         private ImageView ivPostImage;
-        private ImageView ivPostUserPhoto;
-        private TextView tvPostTimeAgo;
+
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvPostDesc = itemView.findViewById(R.id.tvPostDesc);
-            tvPostUsername = itemView.findViewById(R.id.tvPostUsername);
             ivPostImage = itemView.findViewById(R.id.ivPostImage);
-            ivPostUserPhoto = itemView.findViewById(R.id.ivPostUserPhoto);
-            tvPostTimeAgo = itemView.findViewById(R.id.tvPostTimeAgo);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -91,33 +85,13 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         }
 
         public void bind(Post post) {
-            tvPostDesc.setText(post.getDescription());
-            tvPostUsername.setText(post.getUser().getUsername());
-            tvPostTimeAgo.setText(Post.calculateTimeAgo(post.getCreatedAt()));
-
             ParseFile image = post.getImage();
             if (image != null) {
                 Glide.with(context)
                         .load(post.getImage().getUrl())
+                        .centerCrop()
                         .into(ivPostImage);
             }
-            ParseUser user = post.getUser();
-            if  (user != null) {
-                ParseFile image1 = user.getParseFile("image");
-                if (image1 != null) {
-                    Glide.with(context)
-                            .load(image1.getUrl())
-                            .circleCrop()
-                            .into(ivPostUserPhoto);
-                } else {
-                    Glide.with(context)
-                            .load(R.drawable.anon)
-                            .circleCrop()
-                            .into(ivPostUserPhoto);
-                }
-            }
-
-
         }
     }
 }

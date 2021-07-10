@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,7 +30,7 @@ public class DetailsActivity extends AppCompatActivity {
         Post post = (Post) Parcels.unwrap(getIntent().getParcelableExtra("post"));
 
         tvPostDesc = findViewById(R.id.tvPostDesc);
-        tvPostUsername = findViewById(R.id.tvPostUsername);
+        tvPostUsername = findViewById(R.id.tvPostTimeAgo);
         ivPostImage = findViewById(R.id.ivPostImage);
         tvPostTime = findViewById(R.id.tvPostTime);
         ivPostUserPhoto = findViewById(R.id.ivPostUserPhoto);
